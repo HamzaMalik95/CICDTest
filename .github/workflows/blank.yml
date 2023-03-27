@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
-      run: npm --prefix rdicidr-0.1.0/package.json  install
+      run: npm --prefix rdicidr-0.1.0/package.json  install --version 7.15.0
     - name: Linter (ESLint)
       run: npm run lint
     - name: Formatter (Prettier)
