@@ -21,12 +21,12 @@ jobs:
     - name: Install dependencies
       run: npm --prefix rdicidr-0.1.0/package.json  install --version 7.15.0
     - name: Linter (ESLint)
-      run: npm run lint --prefix package.json
+      run: npm lint --prefix package.json
     - name: Formatter (Prettier)
-      run: npm run prettier
+      run: npm prettier --prefix package.json
     - name: Test (Jest)
-      run: npm run test
+      run: npm test --prefix package.json
       env:
         CI: true
     - name: Build
-      run: npm run build
+      run: npm run build --prefix package.json

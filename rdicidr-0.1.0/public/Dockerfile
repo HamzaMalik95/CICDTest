@@ -3,6 +3,8 @@ FROM nginx:alpine
 
 # Copy your HTML, CSS and JavaScript files into the container
 COPY index.html /usr/share/nginx/html/
+COPY manifest.json /usr/share/nginx/html/
+COPY rdicidr-0.1.0/src/* /usr/share/nginx/html/
 #COPY style.css /usr/share/nginx/html/
 #COPY script.js /usr/share/nginx/html/
 
