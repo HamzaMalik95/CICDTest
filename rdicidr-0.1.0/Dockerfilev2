@@ -1,0 +1,51 @@
+# select your base image to start with
+FROM node:14
+# Create app directory
+# this is the location where you will be inside the container
+WORKDIR /app
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+# copying packages first helps take advantage of docker layers
+#COPY package*.json ./
+#COPY src/ .
+#COPY public/index.html .
+COPY src/ ./
+COPY index.html ./
+COPY manifest.json ./
+COPY package*.json ./
+RUN npm install --prefix package.json --no-audit
+RUN npm lint --prefix package.json --no-audit
+RUN npm prettier --prefix package.json --no-audit
+RUN npm test --prefix package.json --no-audit
+RUN npm build --prefix package.json --no-audit
+#RUN npm audit fix --prefix package.json
+#RUN npm lint --prefix package.json
+#RUN npm prettier --prefix package.json
+#RUN npm test --prefix package.json
+#RUN npm build --prefix package.json
+
+# If you are building your code for production
+# RUN npm ci --only=production
+# Bundle app source
+#COPY . .
+# Make this port accessible from outside the container
+# Necessary for your browser to send HTTP requests to your Node app
+EXPOSE 3000
+# Command to run when the container is ready
+# Separate arguments as separate values in the array
+#CMD [ "npm","install","run","start"]
+CMD npm install;npm audit fix;npm run;npm start
+
+
+# Set the base image to use for the usage of container
+#FROM nginx:stable
+# Copy  HTML, CSS and JavaScript files into the container
+#COPY public/ /usr/share/nginx/html/
+#COPY public/ /usr/share/nginx/html/
+#COPY src/ /usr/share/nginx/html/
+
+# Expose port 80 to allow traffic to the container
+#EXPOSE 80
+# Start the nginx web server to serve the HTML, CSS and JavaScript files
+#CMD ["nginx", "-g", "daemon off;"]

@@ -15,9 +15,9 @@ spec:
     spec:
       containers: 
       - name: my-app
-        image: hamza789/cicd:CICD
+        image: hamza789/cicd:finale
         ports:
-        - containerPort: 8080
+        - containerPort: 80
 #---
 #apiVersion: v1
 #kind: Service
